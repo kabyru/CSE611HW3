@@ -94,18 +94,21 @@ int main()
     //    }
     //}
 
+    printf("Generating Matrix A...\n");
     for (long itr = 0; itr < A.height * A.width; itr++)
     {
         A.ptr[itr] = itr % n;
-        printf("%ld\n", itr);
+        //printf("%ld\n", itr);
     }
 
+    printf("Generating Matrix B...\n");
     for (long itr = 0; itr < B.height * B.width; itr++)
     {
         B.ptr[itr] = itr % n;
-        printf("%ld\n", itr);
+        //printf("%ld\n", itr);
     }
 
+    printf("Generating Matrix C...\n");
     clock_t t;
     t = clock();
     //n x n is the size of the a b c matrices

@@ -26,7 +26,7 @@ static void matrix_destroy(struct Matrix* m)
 //Matrices in C are treated like one-dimensional arrays with a layer of abstraction
 static int* matrix_row(struct Matrix* m, int row)
 {
-    return m->ptr + row * m->width; 
+    return m->ptr + row * m->width;
 }
 
 //Returns the (i,j) location in the specified matrix. ROW MAJOR
@@ -76,22 +76,36 @@ int main()
     struct Matrix C = matrix_create(n, n); //This will contain the product 5000x5000 matrix.
 
     //Next, fill in Matrices A and B with values.
-    for (r = 0; r < A.height; ++r)
+    //for (r = 0; r < A.height; ++r)
+    //{
+    //    int* row = matrix_row(&A, r); //Summons the r-th row in Matrix A
+    //    for (c = 0; c < A.width; ++c)
+    //    {
+    //        row[c] = c;
+    //    }
+    //}
+
+    //for (r = 0; r < B.height; ++r)
+    //{
+    //    int* row = matrix_row(&B, r); //Summons the r-th row in Matrix B
+    //    for (c = 0; c < B.width; ++c)
+    //    {
+    //        row[c] = c;
+    //    }
+    //}
+
+    printf("Generating Matrix A...\n");
+    for (long itr = 0; itr < A.height * A.width; itr++)
     {
-        int* row = matrix_row(&A, r); //Summons the r-th row in Matrix A
-        for (c = 0; c < A.width; ++c)
-        {
-            row[c] = c;
-        }
+        A.ptr[itr] = itr % n;
+        //printf("%ld\n", itr);
     }
 
-    for (r = 0; r < B.height; ++r)
+    printf("Generating Matrix B...\n");
+    for (long itr = 0; itr < B.height * B.width; itr++)
     {
-        int* row = matrix_row(&B, r); //Summons the r-th row in Matrix B
-        for (c = 0; c < B.width; ++c)
-        {
-            row[c] = c;
-        }
+        B.ptr[itr] = itr % n;
+        //printf("%ld\n", itr);
     }
 
     clock_t t;
